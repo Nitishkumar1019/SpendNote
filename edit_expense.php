@@ -22,7 +22,7 @@ $row = mysqli_fetch_assoc($result);
         <input type="hidden" name="id" value="<?php echo $row['id'];?>">
 
         <label>Amount:</label>
-        <input type="number" name="amount" value="<?php echo $row['amoount'];?>">
+        <input type="number" name="amount" value="<?php echo $row['amount'];?>">
         <br><br>
 
         <input type="text" name="description" value="<?php echo $row['description'];?>">
