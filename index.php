@@ -32,8 +32,8 @@ $result=mysqli_query($con,$sql);
             <option value="Travel">Travel</option>
             <option value="Food">Food</option>
             <option value="Cloth">Cloth</option>
-            <option value="study material">Study Material</option>
-            <option value="other">Other</option>
+            <option value="Study Material">Study Material</option>
+            <option value="Other">Other</option>
         </select>
         <br><br>
 
