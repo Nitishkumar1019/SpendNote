@@ -58,10 +58,14 @@ $result=mysqli_query($con,$sql);
         ?>
 
         <tr>
-            <td><?php echo $row['amount'];?></td>
-            <td><?php echo $row['description'];?></td>
-            <td><?php echo $row['category'];?></td>
-            <td><?php echo $row['expense_date'];?></td>
+            <!-- <td><?php echo $row['amount'];?></td> -->
+            <td><?php echo htmlspecialchars($row['amount']);?></td>
+            <!-- <td><?php echo $row['description'];?></td> -->
+            <td><?php echo htmlspecialchars($row['description']);?></td>
+            <!-- <td><?php echo $row['category'];?></td> -->
+             <td><?php echo htmlspecialchars($row['category']);?></td>
+            <!-- <td><?php echo $row['expense_date'];?></td> -->
+             <td><?php echo htmlspecialchars($row['expense_date']);?></td>
             <td>
                 <a href="edit_expense.php?id=<?php echo $row['id'];?>">
                     Edit
