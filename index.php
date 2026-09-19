@@ -51,6 +51,7 @@ $result=mysqli_query($con,$sql);
             <th>Description</th>
             <th>Category</th>
             <th>Date</th>
+            <th>Actions</th>
         </tr>
 
         <?php

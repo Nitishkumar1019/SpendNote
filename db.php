@@ -2,7 +2,7 @@
 $server="localhost";
 $username="root";
 $password="";
-$databse="SpendNote";
+$databse="spendnote";
 
 $con=mysqli_connect($server,$username,$password,$databse);
 

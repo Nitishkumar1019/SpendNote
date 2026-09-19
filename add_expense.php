@@ -49,8 +49,8 @@ if($stmt===false){
     die("Prepare failed:".mysqli_error($con));
 }
 
-$test=mysqli_stmt_bind_param($stmt,"dsss",$amount,$description,$category,$expense_date);
-if($test===false){
+$bindResult=mysqli_stmt_bind_param($stmt,"dsss",$amount,$description,$category,$expense_date);
+if($bindResult===false){
     die("Parameter binding failed:".mysqli_stmt_error($stmt));
 }
 
@@ -61,15 +61,19 @@ if($result===false){
     die ("Execution failed:".mysqli_stmt_error($stmt));
 }
 
-if($result){
-    // echo "Expense added";
-    header ("Location:index.php");
-    exit;
-}
-else{
-    // echo "error".mysqli_error($con);
-    echo "error".mysqli_stmt_error($stmt);
-}
+header ("Location:index.php");
+exit;
+
+
+// if($result){
+//     // echo "Expense added";
+//     header ("Location:index.php");
+//     exit;
+// }
+// else{
+//     // echo "error".mysqli_error($con);
+//     echo "error".mysqli_stmt_error($stmt);
+// }
 // echo "amount:".$amount. "<br>";
 // echo "description:".$description. "<br>";
 // echo "category:".$category. "<br>";

@@ -9,17 +9,27 @@ $id=$_GET['id'];
 if($id<=0){
     die ("Invalid Id");
 }
+
 $sql="SELECT * FROM expenses WHERE id=?";
 
 $stmt=mysqli_prepare($con,$sql);
-
+if($stmt===false){
+    die ("Prepare failed:".mysqli_error($con));
+}
 mysqli_stmt_bind_param($stmt,"i",$id);
 
-mysqli_stmt_execute($stmt);
+$executeResult=mysqli_stmt_execute($stmt);
+if($executeResult===false){
+    die("Execution failed:".mysqli_stmt_error($stmt));
+}
+
+
 $result=mysqli_stmt_get_result($stmt);
 
 $row = mysqli_fetch_assoc($result);
-
+if(!$row){
+    die("Expense not found");
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,8 +66,8 @@ $row = mysqli_fetch_assoc($result);
                 Travel
             </option>
 
-            <option value="Faishon" <?php if ($row['category']=="Faishon") echo "selected";?>>
-                Faishon
+            <option value="Cloth" <?php if ($row['category']=="Cloth") echo "selected";?>>
+                Cloth
             </option>
 
             <option value="Study Material" <?php if ($row['category']=="Study Material") echo "selected";?>>
