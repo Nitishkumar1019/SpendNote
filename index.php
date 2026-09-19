@@ -1,3 +1,11 @@
+<?php
+include "db.php";
+
+$sql="SELECT * FROM expenses";
+$result=mysqli_query($con,$sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,5 +43,46 @@
 
         <button type="submit">Save Expense</button>
     </form>
+
+    <h2>Your Expenses</h2>
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Date</th>
+        </tr>
+
+        <?php
+        while($row=mysqli_fetch_assoc($result)){
+        ?>
+
+        <tr>
+            <td><?php echo $row['amount'];?></td>
+            <td><?php echo $row['description'];?></td>
+            <td><?php echo $row['category'];?></td>
+            <td><?php echo $row['expense_date'];?></td>
+            <td>
+                <a href="edit_expense.php?id=<?php echo $row['id'];?>">
+                    Edit
+                </a>
+
+                <a href="delete_expense.php?id=<?php echo $row['id'];?>" onclick="return confirm('Are you sure you want to delete this expense?');">Delete
+                </a>
+            </td>
+        </tr>
+        <?php
+        }
+        ?>
+    </table>
+    <!-- <?php
+    // while($row=mysqli_fetch_assoc($result)){
+    //     echo "Amount:".$row['amount']. "<br>";
+    //     echo "description:".$row['description']. "<br>";
+    //     echo "category:".$row['category']. "<br>";
+    //     echo "Date:".$row['expense_date']. "<br>";
+    //     echo "<hr>";
+    // }
+    ?> -->
 </body>
 </html>

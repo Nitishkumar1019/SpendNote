@@ -10,8 +10,10 @@ $sql="INSERT INTO expenses (amount,description,category,expense_date) VALUES ('$
 
 $result=mysqli_query($con,$sql);
 
+header ("Location:index.php")
+
 if($result){
-    echo "Expense added";
+    // echo "Expense added";
 }
 else{
     echo "error".mysqli_error($con);
