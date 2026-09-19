@@ -1,9 +1,23 @@
 <?php
 include "db.php";
 
+if(!isset($_GET['id'])){
+    die ("Invalid request");
+}
+
 $id=$_GET['id'];
-$sql="SELECT * FROM expenses WHERE id=$id";
-$result=mysqli_query($con,$sql);
+if($id<=0){
+    die ("Invalid Id");
+}
+$sql="SELECT * FROM expenses WHERE id=?";
+
+$stmt=mysqli_prepare($con,$sql);
+
+mysqli_stmt_bind_param($stmt,"i",$id);
+
+mysqli_stmt_execute($stmt);
+$result=mysqli_stmt_get_result($stmt);
+
 $row = mysqli_fetch_assoc($result);
 
 ?>
