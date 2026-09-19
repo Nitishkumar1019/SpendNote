@@ -45,14 +45,21 @@ if(!$date || $date->format('Y-m-d')!==$expense_date){
 $sql="INSERT INTO expenses (amount,description,category,expense_date) VALUES (?,?,?,?) ";
 
 $stmt=mysqli_prepare($con,$sql);
+if($stmt===false){
+    die("Prepare failed:".mysqli_error($con));
+}
 
-
-mysqli_stmt_bind_param($stmt,"dsss",$amount,$description,$category,$expense_date);
-
+$test=mysqli_stmt_bind_param($stmt,"dsss",$amount,$description,$category,$expense_date);
+if($test===false){
+    die("Parameter binding failed:".mysqli_stmt_error($stmt));
+}
 
 
 // $result=mysqli_query($con,$sql);
 $result=mysqli_stmt_execute($stmt);
+if($result===false){
+    die ("Execution failed:".mysqli_stmt_error($stmt));
+}
 
 if($result){
     // echo "Expense added";

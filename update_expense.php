@@ -50,11 +50,20 @@ if(!$date || $date->format('Y-m-d')!==$expense_date){
 $sql="UPDATE expenses SET amount=?, description=?, category=?, expense_date=?  WHERE id=?";
 
 $stmt=mysqli_prepare($con,$sql);
+if($stmt===false){
+    die ("Prepare failed:".mysqli_error($con));
+}
 
-mysqli_stmt_bind_param($stmt,"dsssi",$amount,$description,$category,$expense_date,$id);
+$test=mysqli_stmt_bind_param($stmt,"dsssi",$amount,$description,$category,$expense_date,$id);
+if($test===false){
+    die ("Parameter binding failed:".mysqli_stmt_error($stmt));
+}
 
 // $result=mysqli_query($con,$sql);
 $result=mysqli_stmt_execute($stmt);
+if($result===false){
+    die ("Execution failed:".mysqli_stmt_error($stmt));
+}
 
 if($result){
     header("Location:index.php");

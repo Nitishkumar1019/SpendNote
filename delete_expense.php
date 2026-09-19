@@ -16,11 +16,22 @@ if($id<=0){
 $sql="DELETE FROM expenses WHERE id=?";
 
 $stmt=mysqli_prepare($con,$sql);
+if($stml===false){
+    die ("Prepare failed:".mysqli_error($con));
+}
 
-mysqli_stmt_bind_param($stmt,"i",$id);
+
+$test=mysqli_stmt_bind_param($stmt,"i",$id);
+if($test===false){
+    die ("Parameter failed:".mysqli_stmt_error($stmt));
+}
+
 
 $result=mysqli_stmt_execute($stmt);
 // $result=mysqli_query($con,$sql);
+if($result===false){
+    die ("Execution failed:".mysqli_stmt_error($stmt));
+}
 
 if($result){
     header ("Location:index.php");
