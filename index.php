@@ -45,12 +45,12 @@ $this_month=$month_row['monthly_total']??0;
         <div class="summary-cards">
             <div class="summary-card">
                 <p>Total Spent</p>
-                <h2>Rs<?php echo number_format($total_spent,2);?></h2>
+                <h2>₹<?php echo number_format($total_spent,2);?></h2>
             </div>
 
             <div class="summary-card">
                 <p>This Month</p>
-                <h2>Rs<?php echo number_format($this_month,2);?></h2>
+                <h2>₹<?php echo number_format($this_month,2);?></h2>
             </div>
 
             <div class="summary-card">
@@ -76,12 +76,16 @@ $this_month=$month_row['monthly_total']??0;
                     <div class="form-row">
                         <div class="form-group">
                             <label>Amount:</label>
-                            <input type="number" name="amount">
+                            <div class="amount-input">
+                                <span>₹</span>
+                                <input type="number" name="amount" placeholder="0.00" step="0.01">
+                            </div>
                         </div>
             
                         <div class="form-group">
                             <label>Category</label>
                             <select name="category">
+                                <option value="disabled selected">Select category</option>
                                 <option value="Grocery">Grocery</option>
                                 <option value="Travel">Travel</option>
                                 <option value="Food">Food</option>
@@ -96,12 +100,12 @@ $this_month=$month_row['monthly_total']??0;
                     <div class="form-row">
                         <div class="form-group">
                             <label>Description:</label>
-                            <input type="text" name="description">
+                            <input type="text" name="description" placeholder="Where did you spend it?">
                         </div>
 
                         <div class="form-group">
                             <label>Date:</label>
-                            <input type="date" name="expense_date">
+                            <input type="date" name="expense_date" value=<?php echo date('Y-m-d');?>>
                         </div>
                     </div>
         
