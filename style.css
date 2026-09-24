@@ -292,3 +292,159 @@ td a:last-child{
     box-shadow: none !important;
 }
 
+.transactions-header{
+    margin-bottom: 15px;
+}
+
+.transactions-header h2{
+    margin: 0;
+    font-size: 22px;
+}
+
+.transactions-header p{
+    margin:5px 0 0 ;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.expense-amount{
+    font-weight: 700;
+    color: #111827;
+    white-space: nowrap;
+}
+
+.category-badge{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.expense-date{
+    color: #6b7280;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.edit-btn,.delete-btn{
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.edit-btn{
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.delete-btn{
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+.edit-btn:hover{
+    background: #e0e7ff;
+}
+
+.delete-btn:hover{
+    background: #fee2e2;
+}
+
+.table-wrapper{
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 16px;
+}
+
+.table-wrapper table{
+    min-width: 700px;
+}
+
+@media(max-width:600px){
+
+    .table-wrapper{
+        overflow-x: visible;
+    }
+    .table-wrapper table{
+        min-width: 0;
+        border-collapse: separate;
+        border-spacing: 0 12px;
+        background: transparent;
+        box-shadow: none;
+    }
+    .table-wrapper table tr:first-child{
+        display: none;
+    }
+    .table-wrapper table tr{
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 6px 15px;
+        background: white;
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .table-wrapper table td{
+        border: none;
+        padding: 4px 0;
+    }
+
+    .table-wrapper table td{
+        border: none;
+        padding: 4px 0;
+    }
+    .table-wrapper table td:nth-child(1){
+        grid-column: 1;
+        font-size: 17px;
+    }
+
+    .table-wrapper table td:nth-child(2){
+        grid-column: 1;
+    }
+
+    .table-wrapper table td:nth-child(3){
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+    }
+
+    .table-wrapper table td:nth-child(4){
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
+
+    .table-wrapper table td:nth-child(5){
+        grid-column: 1/-1;
+        display: flex;
+        gap: 10px;
+        margin-top: 8px;
+        padding-top: 12px;
+        border-top: 1px solid #f0f0f0;
+    }
+}
+
+.transaction-tools{
+    margin-bottom: 15px;
+}
+
+.transaction-tools input{
+    width: 100%;
+    max-width: 350px;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    outline: none;
+}
+
+.transaction-tools input:focus{
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70,229,0.1);
+}

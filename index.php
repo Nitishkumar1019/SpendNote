@@ -115,8 +115,17 @@ $this_month=$month_row['monthly_total']??0;
             </div>
         </div>
 
-        <h2>Your Expenses</h2>
+        <div class="transactions-header">
+            <div>
+                <h2>Recent Transactions</h2>
+                <p>Your latest expenses</p>
+            </div>
+        </div>
 
+        <div class="transaction-tools">
+            <input type="text" id="searchExpense" placeholder="Search expenses..">
+        </div>
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th>Amount</th>
@@ -132,23 +141,26 @@ $this_month=$month_row['monthly_total']??0;
 
             <tr>
                 <!-- <td><?php echo $row['amount'];?></td> -->
-                <td><?php echo htmlspecialchars($row['amount']);?></td>
+                <td class="expense-amount">₹<?php echo number_format($row['amount'],2);?></td>
+                 <!-- <td><?php echo htmlspecialchars($row['amount'],2);?></td> -->
 
                 <!-- <td><?php echo $row['description'];?></td> -->
                 <td><?php echo htmlspecialchars($row['description']);?></td>
 
                 <!-- <td><?php echo $row['category'];?></td> -->
-                <td><?php echo htmlspecialchars($row['category']);?></td>
+                <!-- <td><?php echo htmlspecialchars($row['category']);?></td> -->
+                <td <span class="category-badge"><?php echo htmlspecialchars($row['category']);?></span></td>
 
                 <!-- <td><?php echo $row['expense_date'];?></td> -->
-                <td><?php echo htmlspecialchars($row['expense_date']);?></td>
+                <!-- <td><?php echo htmlspecialchars($row['expense_date']);?></td> -->
+                <td class = "expense-date"><?php echo date("d M Y",strtotime($row['expense_date']));?></td>
 
                 <td>
-                    <a href="edit_expense.php?id=<?php echo $row['id'];?>">
+                    <a class="edit-btn" href="edit_expense.php?id=<?php echo $row['id'];?>">
                         Edit
                     </a>
 
-                    <a href="delete_expense.php?id=<?php echo $row['id'];?>"
+                    <a class="delete-btn" href="delete_expense.php?id=<?php echo $row['id'];?>"
                        onclick="return confirm('Are you sure you want to delete this expense?');">
                         Delete
                     </a>
@@ -159,7 +171,7 @@ $this_month=$month_row['monthly_total']??0;
             }
             ?>
         </table>
-
+        </div>
         <!-- <?php
         // while($row=mysqli_fetch_assoc($result)){
         //     echo "Amount:".$row['amount']. "<br>";
@@ -186,6 +198,22 @@ $this_month=$month_row['monthly_total']??0;
         });
         closeExpenseBtn.addEventListener("click",function(){
             expenseModal.style.display="none";
+        });
+
+        const searchExpense=document.querySelector("#searchExpense");
+        const expenseRows=document.querySelectorAll(".table-wrapper table tbody tr");
+        searchExpense.addEventListener("input",function(){
+            const searchText=searchExpense.value.toLowerCase().trim();
+            expenseRows.forEach(function(row){ 
+                const rowText=row.textContent.toLowerCase();
+
+                if(rowText.includes(searchText)){
+                    row.style.display="";
+                }
+                else{
+                    row.style.display="none";
+                }
+            });
         });
     </script>
 </body>
