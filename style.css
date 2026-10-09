@@ -431,20 +431,182 @@ td a:last-child{
     }
 }
 
-.transaction-tools{
-    margin-bottom: 15px;
+.filter-row{
+    display: flex;
+    gap:12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-.transaction-tools input{
-    width: 100%;
-    max-width: 350px;
+.filter-row input,
+.filter-row select{
     padding: 12px 14px;
     border: 1px solid #d1d5db;
     border-radius: 10px;
+    background: white;
     outline: none;
 }
 
-.transaction-tools input:focus{
+.filter-row input{
+    flex: 1;
+    min-width: 220px;
+}
+
+.filter-row select{
+    min-width: 160px;
+}
+
+.filter-row input:focus,
+.filter-row select:focus{
     border-color: #4f46e5;
     box-shadow: 0 0 0 3px rgba(79, 70,229,0.1);
+}
+
+/*
+expense page
+*/
+.edit-page{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.edit-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.edit-header h1{
+    margin: 0;
+    font-size: 32px;
+}
+
+.edit-header p{
+    margin: 6px 0 0;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.back-btn{
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.back-btn:hover{
+    background: #e0e7ff;
+}
+
+.edit-form{
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    border: 1px solid #eef0f5;
+}
+
+.edit-form.form-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.edit-form.form-group{
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.edit-form label{
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.edit-form input , .edit-form select{
+    width: 100%;
+    padding: 13px 14px;
+    margin-bottom: 0;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: white;
+    outline: none;
+
+}
+
+.edit-form input:focus,
+.edit-form select:focus{
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70,229,0.1);
+}
+
+.edit-form.amount-input{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+}
+
+.edit-form.amount-input span{
+    padding-left: 14px;
+}
+
+.edit-form.amount-input input{
+    border: none;
+    box-shadow: none;
+}
+
+.update-btn{
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.update-btn:hover{
+    background: #4338ca;
+}
+
+@media(max-width:600px){
+    .edit-page{
+        width: 100%;
+    }
+
+    .edit-header{
+        gap: 15px;
+    }
+
+    .edit-header h1{
+        font-size: 26px;
+    }
+
+
+    .back-btn{
+        padding: 9px 12px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .edit-form{
+        padding: 20px;
+    }
+
+    .edit-form .form-row{
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 }

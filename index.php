@@ -122,8 +122,20 @@ $this_month=$month_row['monthly_total']??0;
             </div>
         </div>
 
-        <div class="transaction-tools">
+        <div class="filter-row">
             <input type="text" id="searchExpense" placeholder="Search expenses..">
+
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="Grocery">Grocery</option>
+            <option value="Travel">Travel</option>
+            <option value="Food">Food</option>
+            <option value="Cloth">Cloth</option>
+            <option value="Study Material">Study Material</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <input type="month" id="monthFilter">
         </div>
         <div class="table-wrapper">
         <table>
@@ -153,7 +165,9 @@ $this_month=$month_row['monthly_total']??0;
 
                 <!-- <td><?php echo $row['expense_date'];?></td> -->
                 <!-- <td><?php echo htmlspecialchars($row['expense_date']);?></td> -->
-                <td class = "expense-date"><?php echo date("d M Y",strtotime($row['expense_date']));?></td>
+                <td class = "expense-date" data-date="<?php echo htmlspecialchars($row['expense_date']);?>">
+                    <?php echo date("d M Y",strtotime($row['expense_date']));?>
+                </td>
 
                 <td>
                     <a class="edit-btn" href="edit_expense.php?id=<?php echo $row['id'];?>">
@@ -200,21 +214,52 @@ $this_month=$month_row['monthly_total']??0;
             expenseModal.style.display="none";
         });
 
-        const searchExpense=document.querySelector("#searchExpense");
-        const expenseRows=document.querySelectorAll(".table-wrapper table tbody tr");
-        searchExpense.addEventListener("input",function(){
-            const searchText=searchExpense.value.toLowerCase().trim();
-            expenseRows.forEach(function(row){ 
-                const rowText=row.textContent.toLowerCase();
+        const searchExpense = document.querySelector("#searchExpense");
+        const categoryFilter = document.querySelector("#categoryFilter");
+        const monthFilter=document.querySelector("#monthFilter");
+        const expenseRows = document.querySelectorAll(".table-wrapper table tbody tr");
 
-                if(rowText.includes(searchText)){
-                    row.style.display="";
-                }
-                else{
-                    row.style.display="none";
-                }
-            });
-        });
+function filterExpenses() {
+
+    const searchText = searchExpense.value.toLowerCase().trim();
+    const selectedCategory = categoryFilter.value;
+    const selectedMonth=monthFilter.value;
+
+    expenseRows.forEach(function(row) {
+
+        const rowText = row.textContent.toLowerCase();
+        const categoryText = row.children[2].textContent.trim();
+        const expenseDateElement=row.querySelector(".expense-date");
+        const expenseDate=expenseDateElement ? expenseDateElement.dataset.date:"";
+        const matchesSearch = rowText.includes(searchText);
+
+        const matchesCategory =
+            selectedCategory === "all" ||
+            categoryText === selectedCategory;
+
+        const matchesMonth = selectedMonth === ""||
+            expenseDate.startsWith(selectedMonth);
+
+        if(matchesSearch && matchesCategory && matchesMonth) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
+}
+
+searchExpense.addEventListener("input", function() {
+    filterExpenses();
+});
+
+categoryFilter.addEventListener("change", function() {
+    filterExpenses();
+});
+
+monthFilter.addEventListener("change",function(){
+    filterExpenses();
+});
     </script>
 </body>
 </html>
